@@ -3,6 +3,10 @@ name: GMPP pipeline
 on:
   push:
     branches: [main]
+    paths:
+      - 'load_gmpp.py'
+      - 'gmpp_dbt/**'
+      - 'requirements.txt'
   workflow_dispatch:
 
 jobs:
