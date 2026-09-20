@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: stg_gmpp_2021
+    description: >
+      GMPP 2021 publication, mapped from raw.gmpp_2021 onto the common
+      staging contract. Source headers vary by year (column names,
+      financial-year price basis); this model normalises 2021's actual
+      columns onto shared, consistent output names.
+    columns:
+      - name: project_id
+        description: "Major Projects ID. Can be null — a small number of commercially sensitive projects have this withheld under FOI Section 43."
+      - name: department
+        description: "Sponsoring department, as published (e.g. MOD, MOJ, BEIS)."
+      - name: report_year
+        description: "Hardcoded literal — the GMPP publication year this specific model's rows were reported in."
+
+  - name: stg_gmpp_2022
+    description: "GMPP 2022 publication, mapped from raw.gmpp_2022 onto the common staging contract."
+
+  - name: stg_gmpp_2023
+    description: "GMPP 2023 publication, mapped from raw.gmpp_2023 onto the common staging contract."
+
+  - name: stg_gmpp_2024
+    description: "GMPP 2024 publication, mapped from raw.gmpp_2024 onto the common staging contract."
+
+  - name: stg_gmpp_2025
+    description: "GMPP 2025 publication, mapped from raw.gmpp_2025 onto the common staging contract."
+
+  - name: stg_gmpp_2026
+    description: "GMPP 2026 publication, mapped from raw.gmpp_2026 onto the common staging contract."

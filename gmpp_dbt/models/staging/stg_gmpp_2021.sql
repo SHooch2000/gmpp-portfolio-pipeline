@@ -1,0 +1,21 @@
+select
+    "Project Name" as project_name,
+    "Department" as department,
+    "Annual Report Category" as annual_report_category,
+    "Project Description" as project_description,
+    "IPA Delivery Confidence Assessment " as dca_rating,
+    "Departmental Commentary on Delivery Confidence Assessment Rating" as departmental_commentary,
+    "Start Date" as start_date,
+    "End Date" as end_date,
+    "Schedule Narrative" as schedule_narrative,
+    "Financial Year Baseline (£m)" as baseline_cost,
+    "Financial Year Forecast (£m)" as forecast_cost,
+    "Financial Year Variance (%)" as cost_variance_pct,
+    "In Year Variance Narrative" as in_year_variance_narrative,
+    "Whole Life Cost (£m)" as whole_life_cost,
+    "Costs Narrative" as costs_narrative,
+    "Major Projects ID" as project_id,
+    '2021' as report_year,
+    _source_file,
+    _loaded_at
+from {{ source('gmpp_raw', 'gmpp_2021') }}

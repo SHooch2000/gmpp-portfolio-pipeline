@@ -1,0 +1,74 @@
+version: 2
+
+models:
+  - name: int_gmpp_unioned
+    description: "All six years of GMPP staging models combined via UNION ALL. Grain: one row per project per report_year."
+
+  - name: dim_project
+    description: >
+      One row per distinct project_id. Projects with a null project_id
+      (identifier withheld under FOI exemption) are excluded here and
+      in both fact tables, to keep referential integrity clean.
+    columns:
+      - name: project_key
+        description: "Surrogate key, hashed from project_id."
+        data_tests:
+          - unique
+          - not_null
+
+  - name: dim_department
+    description: "One row per distinct sponsoring department."
+    columns:
+      - name: department_key
+        data_tests:
+          - unique
+          - not_null
+
+  - name: dim_date
+    description: "One row per GMPP report_year."
+    columns:
+      - name: date_key
+        data_tests:
+          - unique
+          - not_null
+
+  - name: fct_project_status
+    description: >
+      One row per project per report_year. Cost columns are TRY_CAST from
+      source text (stripping £ and thousands separators) — commercially
+      exempt projects have non-numeric cost text and resolve to NULL rather
+      than failing the build. Rows with a null project_id are excluded.
+    columns:
+      - name: project_key
+        data_tests:
+          - relationships:
+              to: ref('dim_project')
+              field: project_key
+      - name: department_key
+        data_tests:
+          - relationships:
+              to: ref('dim_department')
+              field: department_key
+      - name: date_key
+        data_tests:
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+
+  - name: fct_project_commentary
+    description: >
+      Narrative/free-text fields (schedule, cost, delivery-confidence
+      commentary) split out from fct_project_status to keep the numeric
+      fact table lean for Power BI. Same grain and same exclusions as
+      fct_project_status.
+    columns:
+      - name: project_key
+        data_tests:
+          - relationships:
+              to: ref('dim_project')
+              field: project_key
+      - name: date_key
+        data_tests:
+          - relationships:
+              to: ref('dim_date')
+              field: date_key

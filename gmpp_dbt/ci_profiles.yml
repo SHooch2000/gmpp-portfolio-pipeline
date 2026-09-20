@@ -1,0 +1,14 @@
+gmpp_dbt:
+  target: ci
+  outputs:
+    ci:
+      type: sqlserver
+      backend: mssql-python
+      server: "{{ env_var('AZURE_SQL_SERVER') }}"
+      port: 1433
+      database: "{{ env_var('AZURE_SQL_DATABASE') }}"
+      schema: dbt_ci
+      user: "{{ env_var('AZURE_SQL_USER') }}"
+      password: "{{ env_var('AZURE_SQL_PASSWORD') }}"
+      encrypt: true
+      trust_cert: false

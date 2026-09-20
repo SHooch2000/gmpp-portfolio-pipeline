@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: gmpp_raw
+    schema: raw
+    tables:
+      - name: gmpp_2021
+      - name: gmpp_2022
+      - name: gmpp_2023
+      - name: gmpp_2024
+      - name: gmpp_2025
+      - name: gmpp_2026
+      - name: gmpp_column_map

@@ -1,0 +1,8 @@
+azure-storage-blob
+python-dotenv
+pandas
+openpyxl
+sqlalchemy
+pyodbc
+dbt-core
+dbt-sqlserver[mssql]
