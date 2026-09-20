@@ -27,6 +27,9 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
+      - name: Debug — confirm pyodbc sees the driver
+        run: python -c "import pyodbc; print(pyodbc.drivers())"
+
       - name: Run raw ingestion loader
         env:
           AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
