@@ -1,7 +1,7 @@
 gmpp_dbt:
-  target: ci
+  target: dev
   outputs:
-    ci:
+    dev:
       type: sqlserver
       backend: mssql-python
       server: "{{ env_var('AZURE_SQL_SERVER') }}"
